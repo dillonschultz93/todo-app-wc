@@ -226,6 +226,9 @@ export const tokens = css`
     --body: 1rem;
     --small--body: 0.88rem;
 
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
     /* Effect styles */
     --shadow---medium: 0px 16px 8px rgba(57, 63, 71, 0.04),
       0px 8px 8px rgba(57, 63, 71, 0.04), 0px 4px 4px rgba(57, 63, 71, 0.04),
