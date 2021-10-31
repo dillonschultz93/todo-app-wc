@@ -90,6 +90,7 @@ export class Button extends LitElement {
           color: var(--color);
           padding: var(--padding);
           transition: all 150ms ease-in-out;
+          height: 2rem;
         }
 
         button:hover:not(:disabled) {
