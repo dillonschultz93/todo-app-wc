@@ -1,4 +1,7 @@
 import { LitElement, html, css } from 'lit';
+import { reset, tokens } from './styles/globalStyles.js';
+
+// const logo = new URL('../assets/open-wc-logo.svg', import.meta.url).href;
 
 export class TodoApp extends LitElement {
   static get properties() {
@@ -8,7 +11,7 @@ export class TodoApp extends LitElement {
   }
 
   static get styles() {
-    return css``;
+    return [reset, tokens, css``];
   }
 
   constructor() {
