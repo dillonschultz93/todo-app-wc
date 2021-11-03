@@ -105,6 +105,11 @@ export class Button extends LitElement {
         button:active:not(:disabled) {
           background: var(--gray--2);
         }
+
+        button:disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
       `,
     ];
   }
@@ -114,6 +119,12 @@ export class Button extends LitElement {
 
     this.type = 'button';
     this.kind = 'neutral';
+
+    this.addEventListener('click', e => {
+      if (this.disabled) {
+        e.stopImmediatePropagation();
+      }
+    });
   }
 
   render() {
