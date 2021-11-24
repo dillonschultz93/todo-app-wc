@@ -80,6 +80,26 @@ export const reset = css`
   }
 `;
 
+export const baseStyles = css`
+  .container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      max-width: 36rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      max-width: 36rem;
+    }
+  }
+`;
+
 export const tokens = css`
   :host {
     /* Color styles */
