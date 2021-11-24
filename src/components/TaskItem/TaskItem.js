@@ -33,6 +33,7 @@ export class TaskItem extends LitElement {
 
         .task {
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: space-between;
           gap: 1rem;
@@ -55,6 +56,7 @@ export class TaskItem extends LitElement {
           align-items: center;
           justify-content: space-between;
           gap: 0.25rem;
+          width: 100%;
         }
 
         .edit-area:hover {
@@ -91,6 +93,16 @@ export class TaskItem extends LitElement {
           text-decoration: line-through;
           opacity: 0.75;
         }
+
+        @media (min-width: 768px) {
+          .task {
+            flex-direction: row;
+          }
+
+          .edit-area {
+            width: auto;
+          }
+        }
       `,
     ];
   }
@@ -106,10 +118,12 @@ export class TaskItem extends LitElement {
     this._previousTaskValue = this.task;
   }
 
-  _handleChangeDispatch(id, task) {
+  _handleChangeDispatch(id, task, completed) {
     if (this.task !== this._previousTaskValue) {
       this._previousTaskValue = this.task;
-      this.dispatchEvent(new CustomEvent('edit', { detail: { id, task } }));
+      this.dispatchEvent(
+        new CustomEvent('edit', { detail: { id, task, completed } })
+      );
     }
   }
 
@@ -120,19 +134,19 @@ export class TaskItem extends LitElement {
   }
 
   _handleEditClose() {
-    const { id, task } = this;
+    const { id, task, completed } = this;
     if (this._isEditing) {
       this._isEditing = false;
     }
 
-    this._handleChangeDispatch(id, task);
+    this._handleChangeDispatch(id, task, completed);
   }
 
   _handleSubmit(e) {
-    const { id, task } = this;
+    const { id, task, completed } = this;
 
     if (e.code === 'Enter') {
-      this._handleChangeDispatch(id, task);
+      this._handleChangeDispatch(id, task, completed);
 
       if (this._isEditing) {
         this._isEditing = false;
@@ -147,12 +161,12 @@ export class TaskItem extends LitElement {
   }
 
   _handleCompletedToggle() {
-    const { id } = this;
+    const { id, task } = this;
     this.completed = !this.completed;
 
     this.dispatchEvent(
       new CustomEvent('completed', {
-        detail: { id, completed: this.completed },
+        detail: { id, completed: this.completed, task },
       })
     );
   }
